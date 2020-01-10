@@ -1,0 +1,30 @@
+#%RAML 1.0
+---
+#===============================================================
+#  References:
+#    - RAML Specification - https://github.com/raml-org/raml-spec/blob/master/versions/raml-10/raml-10.md
+#===============================================================
+title: Example Integration Service API Spec
+uses: 
+  traits: lib/traits/traits.raml
+version: v1
+baseUri: "/{version}"
+mediaType:  application/json
+protocols: [ HTTP, HTTPS ]
+types:
+#===============================================================
+# API resource definitions
+#===============================================================
+/example:
+  displayName: Example
+  /integration:
+    displayName: Integration
+    get:
+      is: [traits.BadRequestError, traits.InternalServerError]
+      description: "Returns available Messages"
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include schemas/body/messages-get.json
+              example: !include examples/body/example-messages-get.json
