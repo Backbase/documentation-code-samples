@@ -24,6 +24,7 @@
     </properties>
 
     <dependencies>
+        <!-- tag::persistence-dependencies[] -->
         <!--Added for persistence -->
         <dependency>
             <groupId>com.backbase.buildingblocks</groupId>
@@ -33,7 +34,6 @@
             <groupId>com.backbase.buildingblocks</groupId>
             <artifactId>persistence-starter-config</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.backbase.buildingblocks</groupId>
             <artifactId>service-sdk-starter-mapping</artifactId>
@@ -55,8 +55,8 @@
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
-
-        <!-- Persistence -->
+        <!-- end::persistence-dependencies[] -->
+        
         <dependency>
             <groupId>com.backbase.buildingblocks</groupId>
             <artifactId>service-sdk-starter-test</artifactId>
