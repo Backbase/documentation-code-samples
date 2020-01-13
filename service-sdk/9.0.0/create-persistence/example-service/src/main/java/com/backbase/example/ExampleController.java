@@ -33,7 +33,7 @@ public class ExampleController  {
         List<Greeting> greetings = greetingsService.getGreetings();
         return GreetingsMapper.INSTANCE.greetingsToMessages(greetings);
     }
-
+// tag::addMessage[]
     @RequestMapping(method = RequestMethod.POST, value = "/message")
     @ResponseStatus(HttpStatus.CREATED)
     public String addMessage(@RequestBody Message message) {
@@ -43,4 +43,5 @@ public class ExampleController  {
         greetingsService.addNewGreeting(greeting);
         return id;
     }
+// end::addMessage[]    
 }
