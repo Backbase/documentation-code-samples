@@ -22,6 +22,7 @@ public class ExampleController implements ExampleApi {
     @Autowired
     private MessageClient messageClient;
 
+    // tag::getIntegration[]
     @Override
     public List<IntegrationGetResponseBody> getIntegration(HttpServletRequest httpServletRequest,
                                                      HttpServletResponse httpServletResponse)
@@ -36,4 +37,5 @@ public class ExampleController implements ExampleApi {
 
         return IntegrationMessageMapper.INSTANCE.messagesToIntegrationGetResponseBodys(messages);
     }
+    // end::getIntegration[]
 }
