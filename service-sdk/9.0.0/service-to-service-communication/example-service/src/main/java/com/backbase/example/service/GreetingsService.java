@@ -7,9 +7,9 @@ import java.util.List;
 public interface GreetingsService {
 
     List<Greeting> getGreetings();
-
+    // tag::getExternalGreetings[]
     List<Greeting> getExternalGreetings();
-
+    // end::getExternalGreetings[]
     Greeting getGreetingById(String id);
 
     void saveGreeting(Greeting greeting);
