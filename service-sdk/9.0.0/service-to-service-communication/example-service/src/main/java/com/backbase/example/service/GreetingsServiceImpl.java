@@ -23,10 +23,12 @@ public class GreetingsServiceImpl implements GreetingsService {
         return greetingsRepository.findAll();
     }
 
+    // tag::getExternalGreetings[]
     @Override
     public List<Greeting> getExternalGreetings() {
         return GreetingsMapper.INSTANCE.integrationMessageToGreeting(integrationExampleExampleClient.getIntegration().getBody());
     }
+    // end::getExternalGreetings[]
 
     @Override
     public Greeting getGreetingById(String id) {
