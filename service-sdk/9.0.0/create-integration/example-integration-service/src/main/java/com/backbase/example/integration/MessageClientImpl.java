@@ -22,7 +22,7 @@ public class MessageClientImpl implements MessageClient {
     public MessageClientImpl(RestTemplateBuilder restTemplateBuilder) {
         restTemplate = restTemplateBuilder.build();
     }
-
+// tag::getMessages[]
     @Override
     public List<Message> getMessages() throws IOException {
         /** NOTE: This integration could be completed by creating a code generated client e.g. off a Open API spec */
@@ -37,4 +37,5 @@ public class MessageClientImpl implements MessageClient {
         messages.add(message);
         return messages;
     }
+// end::getMessages[]   
 }
