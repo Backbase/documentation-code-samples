@@ -24,17 +24,17 @@
     </properties>
 
     <dependencies>
-        <!-- tag::spec-dependency[] -->
+        <!-- tag::spec-and-mapper-dependency[] -->
         <dependency>
             <groupId>com.backbase.poc</groupId>
             <artifactId>example-integration-spec</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
-        <!-- end::spec-dependency[] -->
         <dependency>
             <groupId>com.backbase.buildingblocks</groupId>
             <artifactId>service-sdk-starter-mapping</artifactId>
         </dependency>
+        <!-- end::spec-and-mapper-dependency[] -->
         <dependency>
             <groupId>com.backbase.buildingblocks</groupId>
             <artifactId>service-sdk-starter-test</artifactId>
