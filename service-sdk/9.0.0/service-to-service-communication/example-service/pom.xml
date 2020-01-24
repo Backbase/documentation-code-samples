@@ -29,17 +29,14 @@
         <dependency>
             <groupId>com.backbase.buildingblocks</groupId>
             <artifactId>auth-security</artifactId>
-            <version>9.3.1</version>
         </dependency>
         <dependency>
             <groupId>com.backbase.buildingblocks</groupId>
             <artifactId>building-blocks-common</artifactId>
-            <version>9.3.1</version>
         </dependency>
         <dependency>
             <groupId>com.backbase.buildingblocks</groupId>
             <artifactId>communication</artifactId>
-            <version>9.3.1</version>
         </dependency>
         <!-- end::http-dependencies[] -->
         <!-- tag::integration-dependencies[] -->
