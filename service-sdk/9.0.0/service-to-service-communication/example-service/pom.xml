@@ -67,6 +67,10 @@
             <groupId>com.backbase.buildingblocks</groupId>
             <artifactId>service-sdk-starter-mapping</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.backbase.buildingblocks</groupId>
+            <artifactId>api</artifactId>
+        </dependency>
         <!-- end::persistence-dependencies[] -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
