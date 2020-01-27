@@ -30,6 +30,7 @@
                 </configuration>
             </plugin>
              -->
+            <!-- tag::codegen-plugin[] -->
             <plugin>
                 <groupId>com.backbase.codegen</groupId>
                 <artifactId>raml-api-maven-plugin-1-0</artifactId>
@@ -47,6 +48,7 @@
                     <backwardsCompatibleDateMethods>false</backwardsCompatibleDateMethods>
                 </configuration>
             </plugin>
+            <!-- end::codegen-plugin[] -->
         </plugins>
     </build>
 </project>
