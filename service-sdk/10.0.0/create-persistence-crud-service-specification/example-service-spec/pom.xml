@@ -6,7 +6,7 @@
     <parent>
         <artifactId>backbase-spec-starter-parent</artifactId>
         <groupId>com.backbase.buildingblocks</groupId>
-        <version>9.3.0</version>
+        <version>10.0.0</version>
     </parent>
 
     <groupId>com.backbase.poc</groupId>
