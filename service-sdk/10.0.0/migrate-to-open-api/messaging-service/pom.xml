@@ -115,7 +115,7 @@
             </plugin>
             <!-- end::unpack-plugin[] -->
 
-            <!-- tag:codegen-plugin[] -->
+            <!-- tag::codegen-plugin[] -->
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
