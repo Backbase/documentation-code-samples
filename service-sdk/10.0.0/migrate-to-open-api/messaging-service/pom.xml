@@ -86,7 +86,7 @@
 
     <build>
         <plugins>
-
+           <!-- tag::unpack-plugin[] -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -113,7 +113,9 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- end::unpack-plugin[] -->
 
+            <!-- tag:codegen-plugin[] -->
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
@@ -148,6 +150,7 @@
                     </configOptions>
                 </configuration>
             </plugin>
+            <!-- end::codegen-plugin[] -->
         </plugins>
     </build>
 
