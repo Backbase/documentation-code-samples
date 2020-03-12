@@ -1,4 +1,4 @@
-package com.backbase.example.domain;
+package com.backbase.message.domain;
 
 import javax.persistence.*;
 

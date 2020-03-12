@@ -1,13 +1,13 @@
-package com.backbase.example;
+package com.backbase.message;
 
 import com.backbase.buildingblocks.presentation.errors.BadRequestException;
 import com.backbase.buildingblocks.presentation.errors.InternalServerErrorException;
-import com.backbase.dbs.message_service.api.service.v2.MessageApi;
-import com.backbase.dbs.message_service.api.service.v2.model.Message;
-import com.backbase.dbs.message_service.api.service.v2.model.MessagePostResponseBody;
-import com.backbase.example.domain.Greeting;
-import com.backbase.example.mapper.GreetingsMapper;
-import com.backbase.example.service.GreetingsService;
+import com.backbase.dbs.messaging_service.api.service.v2.MessageApi;
+import com.backbase.dbs.messaging_service.api.service.v2.model.Message;
+import com.backbase.dbs.messaging_service.api.service.v2.model.MessagePostResponseBody;
+import com.backbase.message.domain.Greeting;
+import com.backbase.message.mapper.GreetingsMapper;
+import com.backbase.message.service.GreetingsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

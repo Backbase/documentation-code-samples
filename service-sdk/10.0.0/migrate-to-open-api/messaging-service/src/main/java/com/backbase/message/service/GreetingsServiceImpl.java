@@ -1,7 +1,7 @@
-package com.backbase.example.service;
+package com.backbase.message.service;
 
-import com.backbase.example.domain.Greeting;
-import com.backbase.example.repository.GreetingsRepository;
+import com.backbase.message.domain.Greeting;
+import com.backbase.message.repository.GreetingsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

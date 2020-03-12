@@ -25,16 +25,11 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>org.openapitools</groupId>
-            <artifactId>jackson-databind-nullable</artifactId>
-            <version>0.2.1</version>
-        </dependency>
         <!-- Added spec dependency -->
         <!-- tag::spec-dependency[] -->
         <dependency>
             <groupId>com.backbase.message</groupId>
-            <artifactId>message-service-spec-openapi</artifactId>
+            <artifactId>messaging-api</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <!-- end::spec-dependency[] -->
@@ -57,12 +52,6 @@
             <artifactId>spring-boot-starter-cache</artifactId>
         </dependency>
 
-        <!-- Open API code generation -->
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>1.6.0</version>
-        </dependency>
         <!-- Required for Local testing -->
         <dependency>
             <groupId>com.h2database</groupId>
@@ -101,7 +90,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.1.1</version>
                 <executions>
                     <execution>
                         <id>unpack</id>
@@ -113,9 +101,9 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>com.backbase.message</groupId>
-                                    <artifactId>message-service-spec-openapi</artifactId>
+                                    <artifactId>messaging-api</artifactId>
                                     <version>1.0.0-SNAPSHOT</version>
-                                    <outputDirectory>${project.build.directory}/spec</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/yaml</outputDirectory>
                                     <type>jar</type>
                                     <overWrite>true</overWrite>
                                 </artifactItem>
@@ -129,7 +117,6 @@
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
-                <version>4.1.3</version>
                 <executions>
                     <execution>
                         <id>generate-client-api-code</id>
@@ -145,7 +132,7 @@
                     <strictSpec>true</strictSpec>
                     <generateApiTests>false</generateApiTests>
                     <generateModelTests>false</generateModelTests>
-                    <inputSpec>${project.build.directory}/spec/openapi.yaml</inputSpec>
+                    <inputSpec>${project.build.directory}/yaml/openapi.yaml</inputSpec>
                     <configOptions>
                         <library>spring-mvc</library>
                         <dateLibrary>legacy</dateLibrary>
@@ -156,8 +143,8 @@
                         <useTags>true</useTags>
                         <java8>true</java8>
                         <useOptional>false</useOptional>
-                        <apiPackage>com.backbase.dbs.message-service.api.service.v2</apiPackage>
-                        <modelPackage>com.backbase.dbs.message-service.api.service.v2.model</modelPackage>
+                        <apiPackage>com.backbase.dbs.messaging-service.api.service.v2</apiPackage>
+                        <modelPackage>com.backbase.dbs.messaging-service.api.service.v2.model</modelPackage>
                     </configOptions>
                 </configuration>
             </plugin>
