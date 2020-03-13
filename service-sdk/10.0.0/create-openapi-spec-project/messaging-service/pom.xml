@@ -25,13 +25,19 @@
     </properties>
 
         <dependencies>
-            <!-- tag::api-dependency[] -->
+            <!-- tag::openapi-dependency[] -->
             <dependency>
-                <groupId>com.backbase.message</groupId>
-                <artifactId>messaging-api</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>1.6.0</version>
             </dependency>
-            <!-- end::api-dependency[] -->
+
+            <dependency>
+                <groupId>org.openapitools</groupId>
+                <artifactId>jackson-databind-nullable</artifactId>
+                <version>0.2.1</version>
+            </dependency>
+        <!-- end::openapi-dependency[] -->
 
             <dependency>
                 <groupId>com.backbase.buildingblocks</groupId>
