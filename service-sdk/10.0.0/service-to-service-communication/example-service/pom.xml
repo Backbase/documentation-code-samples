@@ -28,6 +28,10 @@
         <!--Required for HTTP s2s HTTP clients -->
         <dependency>
             <groupId>com.backbase.buildingblocks</groupId>
+            <artifactId>auth-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.buildingblocks</groupId>
             <artifactId>building-blocks-common</artifactId>
         </dependency>
         <dependency>
