@@ -20,16 +20,16 @@
 
     <build>
         <plugins>
-            <!-- Uncomment this if your API is creating Commands and Events
+            <!-- tag::boat-plugin[] -->
             <plugin>
-                <groupId>com.backbase.codegen</groupId>
-                <artifactId>jsonschema-events-maven-plugin</artifactId>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>boat-maven-plugin</artifactId>
+                <version>0.1.2</version>
                 <configuration>
-                    <useJavaTime>true</useJavaTime>
-                    <backwardsCompatibleDateMethods>false</backwardsCompatibleDateMethods>
+                    <input>src/main/resources/</input>
                 </configuration>
             </plugin>
-             -->
+            <!-- end::boat-plugin[] -->
             <plugin>
                 <groupId>com.backbase.codegen</groupId>
                 <artifactId>raml-api-maven-plugin-1-0</artifactId>
