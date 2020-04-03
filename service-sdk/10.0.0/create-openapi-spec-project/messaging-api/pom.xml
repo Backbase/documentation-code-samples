@@ -4,64 +4,40 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>backbase-openapi-spec-starter-parent</artifactId>
         <groupId>com.backbase.buildingblocks</groupId>
+        <artifactId>backbase-openapi-spec-starter-parent</artifactId>
         <version>10.1.0</version>
     </parent>
 
     <groupId>com.backbase.message</groupId>
     <artifactId>messaging-api</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>Backbase :: Digital Banking Services :: messaging-api</name>
+    <name>Backbase :: messaging-api</name>
 
-    <dependencies>
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>1.6.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.openapitools</groupId>
-            <artifactId>jackson-databind-nullable</artifactId>
-            <version>0.2.1</version>
-        </dependency>
-    </dependencies>
+    <properties>
+        <!-- plugin versions -->
+        <boat-maven-plugin.version>0.1.2</boat-maven-plugin.version>
+    </properties>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>boat-maven-plugin</artifactId>
+                <version>${boat-maven-plugin.version}</version>
                 <executions>
                     <execution>
-                        <id>generate-client-api-code</id>
+                        <id>boat-validation</id>
+                        <phase>generate-sources</phase>
                         <goals>
-                            <goal>generate</goal>
+                            <goal>validate</goal>
                         </goals>
+                        <configuration>
+                            <input>${project.basedir}/src/main/resources/openapi.yaml</input>
+                            <failOnWarning>true</failOnWarning>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <inputSpec>src/main/resources/openapi.yaml</inputSpec>
-                    <output>${project.build.directory}/generated-sources/api</output>
-                    <configOptions>
-                        <apiPackage>message</apiPackage>
-                        <modelPackage>message.model</modelPackage>
-                    </configOptions>
-                </configuration>
-            </plugin>
-            <!--maven-jar-plugin is only including the OpenAPI spec and examples in the built artifact -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <includes>
-                        <include>**/*.md</include>
-                        <include>**/*.json</include>
-                        <include>**/openapi.yaml</include>
-                    </includes>
-                </configuration>
             </plugin>
         </plugins>
     </build>
