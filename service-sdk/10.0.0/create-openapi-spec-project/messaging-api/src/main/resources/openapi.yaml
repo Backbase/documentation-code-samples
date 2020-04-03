@@ -241,7 +241,6 @@ components:
       required:
       - message
       type: object
-      x-java-type: com.backbase.buildingblocks.presentation.errors.BadRequestException
     ErrorItem:
       description: A validation error
       properties:
@@ -256,7 +255,6 @@ components:
         context:
           description: Context can be anything used to construct localised messages.
           type: object
-          x-java-type: java.util.Map<String,String>
       type: object
     ForbiddenError:
       properties:
@@ -269,7 +267,6 @@ components:
             $ref: '#/components/schemas/ErrorItem'
           type: array
       type: object
-      x-java-type: com.backbase.buildingblocks.presentation.errors.ForbiddenException
     InternalServerError:
       description: Represents HTTP 500 Internal Server Error
       properties:
@@ -279,7 +276,6 @@ components:
       required:
       - message
       type: object
-      x-java-type: com.backbase.buildingblocks.presentation.errors.InternalServerErrorException
     NotAcceptableError:
       properties:
         message:
@@ -290,7 +286,6 @@ components:
             type: string
           type: array
       type: object
-      x-java-type: com.backbase.buildingblocks.presentation.errors.NotAcceptableException
     NotFoundError:
       properties:
         message:
@@ -302,7 +297,6 @@ components:
             $ref: '#/components/schemas/ErrorItem'
           type: array
       type: object
-      x-java-type: com.backbase.buildingblocks.presentation.errors.NotFoundException
     UnauthorizedAltError:
       properties:
         message:
@@ -314,7 +308,6 @@ components:
             $ref: '#/components/schemas/ErrorItem'
           type: array
       type: object
-      x-java-type: com.backbase.buildingblocks.presentation.errors.UnauthorizedException
     UnauthorizedError:
       properties:
         message:
@@ -333,5 +326,3 @@ components:
             $ref: '#/components/schemas/ErrorItem'
           type: array
       type: object
-      x-java-type: com.backbase.buildingblocks.presentation.errors.UnsupportedMediaTypeException
-
