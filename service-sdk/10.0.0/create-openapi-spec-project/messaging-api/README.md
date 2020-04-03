@@ -1,6 +1,10 @@
 # messaging-api
 
-Fill out this file with some information about your OpenAPI spec.
+> _Fill out this file with some information about your OpenAPI spec._
 
 To build this spec, use:
-- mvn spring-boot:run
+```
+mvn clean install
+```
+
+The spec is also validated as part of the build.
