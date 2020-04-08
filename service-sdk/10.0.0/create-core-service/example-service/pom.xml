@@ -32,11 +32,15 @@
 
         <!-- Add dependencies for your services, e.g. BB raml specifications, integration clients -->
 
-        <!-- Uncomment the following dependency if DBS inter-service communication is needed -->
+        <!-- Uncomment the following dependencies if DBS inter-service communication is needed -->
         <!--
              <dependency>
                 <groupId>com.backbase.buildingblocks</groupId>
                 <artifactId>communication</artifactId>
+             </dependency>
+             <dependency>
+                <groupId>com.backbase.buildingblocks</groupId>
+                <artifactId>auth-security</artifactId>
              </dependency>
            -->
     </dependencies>
