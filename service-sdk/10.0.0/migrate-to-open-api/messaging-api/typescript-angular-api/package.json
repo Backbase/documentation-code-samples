@@ -1,0 +1,10 @@
+{
+  "name": "@backbase/message-http-ang",
+  "scripts": {
+    "api:check": "api-extractor run",
+    "api:extract": "api-extractor run --local"
+  },
+  "devDependencies": {
+    "@microsoft/api-extractor": "^7.8.10"
+  }
+}
