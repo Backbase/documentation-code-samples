@@ -10,7 +10,7 @@ pipeline {
 
   environment {
     BACKBASE_REGISTRY = "https://repo.backbase.com/api/npm/npm-backbase/"
-    PUBISH_REGISTRY = "https://myregistry.backbase.com/"
+    PUBLISH_REGISTRY = "https://myregistry.backbase.com/"
     RELEASE_BRANCH_PATTERN = /^(master|release\/.*)$/
   }
 
