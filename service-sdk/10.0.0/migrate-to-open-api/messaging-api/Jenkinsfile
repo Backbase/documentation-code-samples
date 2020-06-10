@@ -57,9 +57,7 @@ pipeline {
     }
 
     stage('Deploy') {
-      when { allOf {
-        expression { BRANCH_NAME ==~ RELEASE_BRANCH_PATTERN }
-      } }
+      when { expression { BRANCH_NAME ==~ RELEASE_BRANCH_PATTERN } }
       steps {
         script {
           dir('target/generated-sources/openapi/dist') {
