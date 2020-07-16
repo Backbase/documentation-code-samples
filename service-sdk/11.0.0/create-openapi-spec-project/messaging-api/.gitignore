@@ -1,6 +1,8 @@
-target
+/target
+.DS_Store
 .idea
 *.iml
-blackduck-scan-wars/hub-detect.sh
-*.springBeans
-/flaws.json
+/src/main/java
+/src/main/resources/lib
+node_modules
+fe-dist
