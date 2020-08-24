@@ -3,6 +3,6 @@
 .idea
 *.iml
 /src/main/java
-/src/main/resources/lib
+
 node_modules
 fe-dist
