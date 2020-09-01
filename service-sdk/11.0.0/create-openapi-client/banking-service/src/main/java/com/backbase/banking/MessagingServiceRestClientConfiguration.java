@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import javax.validation.constraints.Pattern;
 
-
+// tag::MessagingServiceRestClientConfiguration[]
 @Configuration
 @ConfigurationProperties("backbase.communication.services.name")
 public class MessagingServiceRestClientConfiguration {
@@ -38,3 +38,4 @@ public class MessagingServiceRestClientConfiguration {
         return new MessageApi(apiClient);
     }
 }
+// end::MessagingServiceRestClientConfiguration[]
