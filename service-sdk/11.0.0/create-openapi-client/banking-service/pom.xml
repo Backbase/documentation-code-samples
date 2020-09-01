@@ -99,6 +99,6 @@
         </plugins>
 
     </build>
-    <!-- tag::openapi-generator-plugin[] -->
+    <!-- end::openapi-generator-plugin[] -->
 
 </project>
