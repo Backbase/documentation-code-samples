@@ -1,0 +1,4 @@
+backbase:
+  payments:
+    batches:
+      supported-batch-upload-types: BB_SEPACT_CSV,LOREM_IPSUM

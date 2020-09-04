@@ -1,0 +1,20 @@
+{
+  "label": "Salary_Sep2019_high",
+  "priority": "high",
+  "own-account": "AT622643775968303743",
+  "requested-execution-date": "25/09/2019",
+  "batch-total-amount": "10950",
+  "batch-payments-count": "2",
+  "payments": [
+    {
+      "counterparty-name": "Lia Kyriake",
+      "counterparty-account": "IT65C0300203280264373466638",
+      "amount": "6100"
+    },
+    {
+      "counterparty-name": "Samuel Claus",
+      "counterparty-account": "LU890103769859624113",
+      "amount": "4850"
+    }
+  ]
+}
