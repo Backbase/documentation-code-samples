@@ -24,7 +24,7 @@
         <dependencies>
             <dependency>
                 <groupId>com.backbase.buildingblocks</groupId>
-                <version>10.0.0</version>
+                <version>11.3.0</version>
                 <artifactId>service-sdk-starter-core</artifactId>
                 <type>pom</type>
                 <scope>import</scope>
