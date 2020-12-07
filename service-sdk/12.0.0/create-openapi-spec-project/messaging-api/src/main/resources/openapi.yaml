@@ -1,0 +1,286 @@
+openapi: 3.0.1
+info:
+  description: No description available
+  title: Message Service API Spec
+  version: v1
+servers:
+- description: The server
+  url: /v1
+tags:
+- name: message service api spec
+paths:
+  /message:
+    delete:
+      description: Deletes a message
+      operationId: deleteMessage
+      parameters:
+      - description: Id of the message record
+        example: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
+        in: query
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        204:
+          description: request to delete completed
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                validationError:
+                  $ref: '#/components/examples/badRequestError'
+          description: BadRequest
+        500:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+              examples:
+                internalServerError:
+                  $ref: '#/components/examples/internalServerError'
+          description: InternalServerError
+      summary: Adds or updates a message.
+      tags:
+      - message
+    description: No description available
+    get:
+      description: Returns available items, optionally filtered by name
+      operationId: getMessage
+      parameters:
+      - description: Id of the message record
+        example: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
+        in: query
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          content:
+            application/json:
+              example:
+                $ref: examples/body/example-message.json
+              schema:
+                $ref: '#/components/schemas/Message'
+          description: No description available
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                validationError:
+                  $ref: '#/components/examples/badRequestError'
+          description: BadRequest
+        500:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+              examples:
+                internalServerError:
+                  $ref: '#/components/examples/internalServerError'
+          description: InternalServerError
+      summary: Returns available items, optionally filtered by name.
+      tags:
+      - message
+    post:
+      description: Adds or updates a message
+      operationId: postMessage
+      requestBody:
+        content:
+          application/json:
+            example:
+              $ref: examples/body/example-message.json
+            schema:
+              $ref: '#/components/schemas/Message'
+        description: Adds or updates a message
+      responses:
+        201:
+          content:
+            application/json:
+              example:
+                $ref: examples/body/example-message-created.json
+              schema:
+                $ref: '#/components/schemas/MessagePostResponseBody'
+          description: request to create item accepted
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                validationError:
+                  $ref: '#/components/examples/badRequestError'
+          description: BadRequest
+        500:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+              examples:
+                internalServerError:
+                  $ref: '#/components/examples/internalServerError'
+          description: InternalServerError
+      summary: Adds or updates a message.
+      tags:
+      - message
+    put:
+      description: Adds or updates a message
+      operationId: putMessage
+      requestBody:
+        content:
+          application/json:
+            example:
+              $ref: examples/body/example-message.json
+            schema:
+              $ref: '#/components/schemas/Message'
+        description: Adds or updates a message
+      responses:
+        204:
+          description: request to update item completed
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                validationError:
+                  $ref: '#/components/examples/badRequestError'
+          description: BadRequest
+        500:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+              examples:
+                internalServerError:
+                  $ref: '#/components/examples/internalServerError'
+          description: InternalServerError
+      summary: Adds or updates a message.
+      tags:
+      - message
+    summary: Message
+  /message/messages:
+    description: No description available
+    get:
+      description: Returns all available messages
+      operationId: getMessages
+      responses:
+        200:
+          content:
+            application/json:
+              example:
+                $ref: examples/body/example-messages-get.json
+              schema:
+                $ref: '#/components/schemas/MessagesGetResponseBody'
+          description: No description available
+        400:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                validationError:
+                  $ref: '#/components/examples/badRequestError'
+          description: BadRequest
+        500:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+              examples:
+                internalServerError:
+                  $ref: '#/components/examples/internalServerError'
+          description: InternalServerError
+      summary: Returns all available messages.
+      tags:
+      - message
+    summary: /messages
+components:
+  schemas:
+    BadRequestError:
+      $ref: 'lib/schemas/bad-request-error.yaml'
+    ConflictError:
+      $ref: 'lib/schemas/conflict-error.yaml'
+    Currency:
+      $ref: 'lib/schemas/currency.yaml'
+    ErrorItem:
+      $ref: 'lib/schemas/error-item.yaml'
+    ForbiddenError:
+      $ref: 'lib/schemas/forbidden-error.yaml'
+    InternalServerError:
+      $ref: 'lib/schemas/internal-server-error.yaml'
+    NotFoundError:
+      $ref: 'lib/schemas/not-found-error.yaml'
+    Message:
+      $ref: schemas/body/message.json
+    MessagesGetResponseBody:
+      $ref: schemas/body/messages-get.json
+    MessagePostResponseBody:
+      $ref: schemas/body/message-created.json
+    NotAcceptableError:
+      properties:
+        message:
+          type: string
+        supportedMediaTypes:
+          description: List of supported media types for this endpoint
+          items:
+            type: string
+          type: array
+      type: object
+    UnauthorizedAltError:
+      properties:
+        message:
+          description: Any further information
+          type: string
+        errors:
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+          type: array
+      type: object
+    UnauthorizedError:
+      properties:
+        message:
+          type: string
+      required:
+      - message
+      type: object
+    UnsupportedMediaTypeError:
+      properties:
+        message:
+          description: Any further information
+          type: string
+        errors:
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+          type: array
+      type: object
+
+  examples:
+    badRequestError:
+      value:
+        $ref: 'lib/examples/bad-request-validation-error.json'
+    conflictError:
+      value:
+        $ref: 'lib/examples/conflict-error.json'
+    currency:
+      value:
+        $ref: 'lib/examples/currency.json'
+    errorItem:
+      value:
+        $ref: 'lib/examples/error-item.yaml'
+    forbiddenError:
+      value:
+        $ref: 'lib/examples/forbidden-error.json'
+    internalServerError:
+      value:
+        $ref: 'lib/examples/internal-server-error.json'
+    notFoundError:
+      value:
+        $ref: 'lib/examples/not-found-error.json'
