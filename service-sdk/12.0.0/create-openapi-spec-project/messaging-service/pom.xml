@@ -109,7 +109,7 @@
                         <strictSpec>true</strictSpec>
                         <generateApiTests>false</generateApiTests>
                         <generateModelTests>false</generateModelTests>
-                        <inputSpec>${project.build.directory}/yaml/openapi.yaml</inputSpec>
+                        <inputSpec>${project.build.directory}/yaml/client-api-v1.yaml</inputSpec>
                         <configOptions>
                             <library>spring-mvc</library>
                             <dateLibrary>legacy</dateLibrary>

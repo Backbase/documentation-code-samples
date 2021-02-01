@@ -1,0 +1,428 @@
+openapi: 3.0.3
+info:
+  title: Message Service API Spec
+  description: No description available
+  version: 1.0.0
+servers:
+- url: /serviceName/
+  description: The server
+tags:
+- name: message service api spec
+paths:
+  /1.0.0/message:
+    summary: Message
+    description: No description available
+    get:
+      tags:
+      - message
+      summary: "Returns available items, optionally filtered by name."
+      description: "Returns available items, optionally filtered by name"
+      operationId: getMessage
+      parameters:
+      - name: id
+        in: query
+        description: Id of the message record
+        required: true
+        schema:
+          type: string
+        examples:
+          example:
+            summary: example
+            value: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
+      responses:
+        "200":
+          description: No description available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageGetResponseBody'
+              examples:
+                example:
+                  value:
+                    id: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
+                    message: Hello
+        "400":
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                example:
+                  value:
+                    message: Bad Request
+                    errors:
+                    - message: "Value Exceeded. Must be between {min} and {max}."
+                      key: common.api.shoesize
+                      context:
+                        max: "50"
+                        min: "1"
+        "500":
+          description: InternalServerError
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+              examples:
+                example:
+                  value:
+                    message: Description of error
+    put:
+      tags:
+      - message
+      summary: Adds or updates a message.
+      description: Adds or updates a message
+      operationId: putMessage
+      requestBody:
+        description: Adds or updates a message
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageRequest'
+            examples:
+              example:
+                value:
+                  id: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
+                  message: Hello
+      responses:
+        "204":
+          description: request to update item completed
+        "400":
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                example:
+                  value:
+                    message: Bad Request
+                    errors:
+                    - message: "Value Exceeded. Must be between {min} and {max}."
+                      key: common.api.shoesize
+                      context:
+                        max: "50"
+                        min: "1"
+        "500":
+          description: InternalServerError
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+              examples:
+                example:
+                  value:
+                    message: Description of error
+    post:
+      tags:
+      - message
+      summary: Adds or updates a message.
+      description: Adds or updates a message
+      operationId: postMessage
+      requestBody:
+        description: Adds or updates a message
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessageRequest'
+            examples:
+              example:
+                value:
+                  id: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
+                  message: Hello
+      responses:
+        "201":
+          description: request to create item accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessagePostResponseBody'
+              examples:
+                example:
+                  value:
+                    id: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
+        "400":
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                example:
+                  value:
+                    message: Bad Request
+                    errors:
+                    - message: "Value Exceeded. Must be between {min} and {max}."
+                      key: common.api.shoesize
+                      context:
+                        max: "50"
+                        min: "1"
+        "500":
+          description: InternalServerError
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+              examples:
+                example:
+                  value:
+                    message: Description of error
+    delete:
+      tags:
+      - message
+      summary: Deletes a message.
+      description: Deletes a message
+      operationId: deleteMessage
+      parameters:
+      - name: id
+        in: query
+        description: Id of the message record
+        required: true
+        schema:
+          type: string
+        examples:
+          example:
+            summary: example
+            value: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
+      responses:
+        "204":
+          description: request to delete completed
+        "400":
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                example:
+                  value:
+                    message: Bad Request
+                    errors:
+                    - message: "Value Exceeded. Must be between {min} and {max}."
+                      key: common.api.shoesize
+                      context:
+                        max: "50"
+                        min: "1"
+        "500":
+          description: InternalServerError
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+              examples:
+                example:
+                  value:
+                    message: Description of error
+  /1.0.0/message/messages:
+    summary: /messages
+    description: No description available
+    get:
+      tags:
+      - message
+      summary: Returns all available messages.
+      description: Returns all available messages
+      operationId: getMessages
+      responses:
+        "200":
+          description: No description available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageMessagesGetGetResponseBody'
+              examples:
+                example:
+                  value:
+                  - id: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
+                    message: Hello
+                  - id: d593c212-70ad-41a6-a547-d5d9232414cb
+                    message: Hola
+                  - id: 9635966b-28e9-4479-8121-bb7bc9beeb62
+                    message: hej
+        "400":
+          description: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestError'
+              examples:
+                example:
+                  value:
+                    message: Bad Request
+                    errors:
+                    - message: "Value Exceeded. Must be between {min} and {max}."
+                      key: common.api.shoesize
+                      context:
+                        max: "50"
+                        min: "1"
+        "500":
+          description: InternalServerError
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
+              examples:
+                example:
+                  value:
+                    message: Description of error
+components:
+  schemas:
+    BadRequestError:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+      x-java-type: com.backbase.buildingblocks.presentation.errors.BadRequestException
+    ErrorItem:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Default Message. Any further information.
+        key:
+          type: string
+          description: "{capability-name}.api.{api-key-name}. For generated validation\
+            \ errors this is the path in the document the error resolves to. e.g.\
+            \ object name + '.' + field"
+        context:
+          type: object
+          description: Context can be anything used to construct localised messages.
+          x-java-type: "java.util.Map<String,String>"
+      description: A validation error
+    ForbiddenError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+      x-java-type: com.backbase.buildingblocks.presentation.errors.ForbiddenException
+    InternalServerError:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          description: Further Information
+      description: Represents HTTP 500 Internal Server Error
+      x-java-type: com.backbase.buildingblocks.presentation.errors.InternalServerErrorException
+    Message:
+      required:
+      - id
+      - message
+      type: object
+      properties:
+        id:
+          type: string
+        message:
+          type: string
+    MessageGetResponseBody:
+      required:
+      - id
+      - message
+      type: object
+      properties:
+        id:
+          type: string
+        message:
+          type: string
+      example:
+        id: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
+        message: Hello
+    MessageMessagesGetGetResponseBody:
+      type: array
+      example:
+      - id: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
+        message: Hello
+      - id: d593c212-70ad-41a6-a547-d5d9232414cb
+        message: Hola
+      - id: 9635966b-28e9-4479-8121-bb7bc9beeb62
+        message: hej
+      items:
+        $ref: '#/components/schemas/Message'
+    MessagePostResponseBody:
+      type: object
+      properties:
+        id:
+          type: string
+      example:
+        id: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
+    MessageRequest:
+      required:
+      - id
+      - message
+      type: object
+      properties:
+        id:
+          type: string
+        message:
+          type: string
+      example:
+        id: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
+        message: Hello
+    NotAcceptableError:
+      type: object
+      properties:
+        message:
+          type: string
+        supportedMediaTypes:
+          type: array
+          description: List of supported media types for this endpoint
+          items:
+            type: string
+      x-java-type: com.backbase.buildingblocks.presentation.errors.NotAcceptableException
+    NotFoundError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+      x-java-type: com.backbase.buildingblocks.presentation.errors.NotFoundException
+    UnauthorizedAltError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+      x-java-type: com.backbase.buildingblocks.presentation.errors.UnauthorizedException
+    UnauthorizedError:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+    UnsupportedMediaTypeError:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Any further information
+        errors:
+          type: array
+          description: Detailed error information
+          items:
+            $ref: '#/components/schemas/ErrorItem'
+      x-java-type: com.backbase.buildingblocks.presentation.errors.UnsupportedMediaTypeException

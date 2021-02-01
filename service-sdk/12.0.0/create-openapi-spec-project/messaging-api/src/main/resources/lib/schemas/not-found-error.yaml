@@ -1,3 +1,4 @@
+title: NotFoundError
 type: object
 properties:
   message:

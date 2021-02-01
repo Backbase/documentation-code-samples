@@ -55,7 +55,8 @@ public class ExampleControllerIT {
     public void exampleTest() throws Exception {
 
 
-        MockHttpServletRequestBuilder requestBuilder = get("/message").header("Authorization", TEST_JWT).param("id",
+        MockHttpServletRequestBuilder requestBuilder = get("/client-api/v1/messages").header("Authorization",
+                TEST_JWT).param("id",
                 "mockID").contentType(MediaType.APPLICATION_JSON);
 
         ResultActions result = mvc.perform(requestBuilder).andDo(print());

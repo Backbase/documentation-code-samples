@@ -6,7 +6,7 @@
     <parent>
         <groupId>com.backbase.buildingblocks</groupId>
         <artifactId>backbase-openapi-spec-starter-parent</artifactId>
-        <version>11.3.0</version>
+        <version>12.1.0</version>
     </parent>
 
     <groupId>com.backbase.message</groupId>
@@ -16,7 +16,7 @@
 
     <properties>
         <!-- plugin versions -->
-        <boat-maven-plugin.version>0.1.7</boat-maven-plugin.version>
+        <boat-maven-plugin.version>0.13.0</boat-maven-plugin.version>
     </properties>
 
     <build>
@@ -33,8 +33,60 @@
                             <goal>validate</goal>
                         </goals>
                         <configuration>
-                            <input>${project.basedir}/src/main/resources/openapi.yaml</input>
+                            <input>${project.basedir}/src/main/resources/client-api-v1.yaml</input>
                             <failOnWarning>true</failOnWarning>
+                        </configuration>
+                    </execution>
+                    <!-- main version of the specs - dynamically versioned filename -->
+                    <execution>
+                        <id>boat-bundle</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>bundle</goal>
+                        </goals>
+                        <configuration>
+                            <input>${project.basedir}/src/main/resources</input>
+                            <output>${project.build.directory}</output>
+                            <versionFileName>true</versionFileName>
+                        </configuration>
+                    </execution>
+                    <!-- unversioned - static filename for docs -->
+                    <execution>
+                        <id>boat-bundle-unversioned</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>bundle</goal>
+                        </goals>
+                        <configuration>
+                            <input>${project.basedir}/src/main/resources</input>
+                            <output>${project.build.directory}/unversioned</output>
+                            <versionFileName>false</versionFileName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>boat-linting</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>lint</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.build.directory}</inputSpec>
+                            <output>${project.basedir}/target/boat-lint-reports</output>
+                            <writeLintReport>true</writeLintReport>
+                            <failOnWarning>true</failOnWarning>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>boat-docs</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.build.directory}/unversioned/client-api-v1.yaml</inputSpec>
+                            <output>${project.build.directory}/generated-docs</output>
+                            <generatorName>html2</generatorName>
+                            <generateAliasAsModel>true</generateAliasAsModel>
                         </configuration>
                     </execution>
                 </executions>

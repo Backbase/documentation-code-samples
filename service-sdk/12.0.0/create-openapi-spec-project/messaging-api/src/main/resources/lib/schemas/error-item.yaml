@@ -1,3 +1,4 @@
+title: ErrorItem
 type: object
 properties:
   message:

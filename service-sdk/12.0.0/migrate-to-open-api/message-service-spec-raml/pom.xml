@@ -6,7 +6,7 @@
     <parent>
         <artifactId>backbase-spec-starter-parent</artifactId>
         <groupId>com.backbase.buildingblocks</groupId>
-        <version>12.0.0</version>
+        <version>12.1.0</version>
     </parent>
 
     <groupId>com.backbase.message</groupId>
@@ -24,7 +24,7 @@
             <plugin>
                 <groupId>com.backbase.oss</groupId>
                 <artifactId>boat-maven-plugin</artifactId>
-                <version>0.1.7</version>
+                <version>0.13.0</version>
                 <configuration>
                     <input>src/main/resources/</input>
                 </configuration>

@@ -9,7 +9,7 @@
     <parent>
         <artifactId>service-sdk-starter-core</artifactId>
         <groupId>com.backbase.buildingblocks</groupId>
-        <version>12.0.0</version>
+        <version>12.1.0</version>
         <relativePath />
     </parent>
 
@@ -159,7 +159,7 @@
                     <strictSpec>true</strictSpec>
                     <generateApiTests>false</generateApiTests>
                     <generateModelTests>false</generateModelTests>
-                    <inputSpec>${project.build.directory}/yaml/openapi.yaml</inputSpec>
+                    <inputSpec>${project.build.directory}/yaml/client-api-v1.yaml</inputSpec>
                     <configOptions>
                         <library>spring-mvc</library>
                         <dateLibrary>legacy</dateLibrary>
