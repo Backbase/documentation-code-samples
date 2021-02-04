@@ -16,7 +16,7 @@
 
     <properties>
         <!-- plugin versions -->
-        <boat-maven-plugin.version>0.13.0</boat-maven-plugin.version>
+        <boat-maven-plugin.version>0.14.0</boat-maven-plugin.version>
     </properties>
 
     <build>
@@ -87,6 +87,23 @@
                             <output>${project.build.directory}/generated-docs</output>
                             <generatorName>html2</generatorName>
                             <generateAliasAsModel>true</generateAliasAsModel>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>assemble-api-zip</id>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>assembly/api.xml</descriptor>
+                            </descriptors>
                         </configuration>
                     </execution>
                 </executions>
