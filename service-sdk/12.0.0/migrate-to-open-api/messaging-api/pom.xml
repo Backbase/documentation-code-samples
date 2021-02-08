@@ -91,7 +91,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- tag::maven-assembly-plugin -->
+            <!-- tag::maven-assembly-plugin[] -->
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
@@ -109,7 +109,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- end::maven-assembly-plugin -->
+            <!-- end::maven-assembly-plugin[] -->
         </plugins>
     </build>
 </project>
