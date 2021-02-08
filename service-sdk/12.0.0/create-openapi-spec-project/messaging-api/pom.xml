@@ -91,6 +91,25 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- tag::maven-assembly-plugin[] -->
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>assemble-api-zip</id>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>assembly/api.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- end::maven-assembly-plugin[] -->
         </plugins>
     </build>
 </project>
