@@ -3,9 +3,7 @@ package com.backbase.dbs.payment.batch.parser.type;
 import com.backbase.buildingblocks.presentation.errors.BadRequestException;
 import com.backbase.dbs.payment.batch.config.BatchConfiguration;
 import com.backbase.dbs.payment.batch.model.BatchHeader;
-import com.backbase.dbs.payment.batch.model.BatchHeader.BatchHeaderBuilder;
 import com.backbase.dbs.payment.batch.model.BatchPayment;
-import com.backbase.dbs.payment.batch.model.BatchPayment.BatchPaymentBuilder;
 import com.backbase.dbs.payment.batch.model.BatchUploadHeader;
 import com.backbase.dbs.payment.batch.parser.BatchParseCallback;
 import com.backbase.dbs.payment.batch.parser.DigestBatchParser;
@@ -38,53 +36,53 @@ public class LoremIpsumBatchParser extends DigestBatchParser {
     public void parseBatches(InputStream inputStream, BatchParseCallback callback) {
 
         try (JsonParser parser = new JsonFactory().createParser(inputStream)) {
-            callback.onBatchUpload(BatchUploadHeader.builder().batchFileType(LOREM_IPSUM_TYPE).build());
-            BatchHeaderBuilder batchHeaderBuilder = BatchHeader.builder().currency("EUR").batchType("SEPACT");
+            callback.onBatchUpload(new BatchUploadHeader().batchFileType(LOREM_IPSUM_TYPE));
+            BatchHeader batchHeader = new BatchHeader().currency("EUR").batchType("SEPACT");
             parser.nextToken();
             while (parser.nextToken() != JsonToken.END_OBJECT) {
                 switch (parser.getCurrentName()) {
                     case "label":
-                        batchHeaderBuilder.batchName(parser.nextTextValue());
+                        batchHeader.batchName(parser.nextTextValue());
                         break;
                     case "priority":
                         // priority is non-standard field and will be stored in the additions map
-                        batchHeaderBuilder.additions(Collections.singletonMap("priority", parser.nextTextValue()));
+                        batchHeader.additions(Collections.singletonMap("priority", parser.nextTextValue()));
                         break;
                     case "own-account":
-                        batchHeaderBuilder.originatorAccount(parser.nextTextValue());
+                        batchHeader.originatorAccount(parser.nextTextValue());
                         break;
                     case "requested-execution-date":
-                        batchHeaderBuilder.requestedExecutionDate(
+                        batchHeader.requestedExecutionDate(
                             LocalDate.parse(parser.nextTextValue(), DateTimeFormatter.ofPattern("dd/MM/yyyy")));
                         break;
                     case "batch-total-amount":
-                        batchHeaderBuilder.batchTotalAmount(new BigDecimal(parser.nextTextValue()));
+                        batchHeader.batchTotalCreditAmount(new BigDecimal(parser.nextTextValue()));
                         break;
                     case "batch-payments-count":
-                        batchHeaderBuilder.batchPaymentsCount(Integer.valueOf(parser.nextTextValue()));
+                        batchHeader.batchPaymentsCount(Integer.valueOf(parser.nextTextValue()));
                         break;
                     case "payments":
-                        callback.onBatch(batchHeaderBuilder.build());
+                        callback.onBatch(batchHeader);
                         parser.nextToken();
                         while (parser.nextToken() != JsonToken.END_ARRAY) {
-                            BatchPaymentBuilder batchPaymentBuilder = BatchPayment.builder().currency("EUR")
+                            BatchPayment batchPayment = new BatchPayment().currency("EUR")
                                 .location(formatJsonLocation(parser.getCurrentLocation()));
                             while (parser.nextToken() != JsonToken.END_OBJECT) {
                                 switch (parser.getCurrentName()) {
                                     case "counterparty-name":
-                                        batchPaymentBuilder.counterpartyName(parser.nextTextValue());
+                                        batchPayment.counterpartyName(parser.nextTextValue());
                                         break;
                                     case "counterparty-account":
-                                        batchPaymentBuilder.counterpartyAccount(parser.nextTextValue());
+                                        batchPayment.counterpartyAccount(parser.nextTextValue());
                                         break;
                                     case "amount":
-                                        batchPaymentBuilder.amount(new BigDecimal(parser.nextTextValue()));
+                                        batchPayment.amount(new BigDecimal(parser.nextTextValue()));
                                         break;
                                     default:
                                         throw new BadRequestException("Batch is not valid");
                                 }
                             }
-                            callback.onPaymentRecord(batchPaymentBuilder.build());
+                            callback.onPaymentRecord(batchPayment);
                         }
                         callback.onBatchEnd();
                         break;

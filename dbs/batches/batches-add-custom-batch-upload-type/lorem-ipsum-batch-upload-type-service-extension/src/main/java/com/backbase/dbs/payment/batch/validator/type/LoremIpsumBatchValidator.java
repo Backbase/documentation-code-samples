@@ -50,10 +50,11 @@ public class LoremIpsumBatchValidator implements BatchTypeValidator {
     public void validate(BatchHeader batchHeader, BatchUploadReport batchUploadReport) {
         // add batch order pre-validation logic here
 
-        if (batchHeader.getBatchTotalAmount().compareTo(BigDecimal.ZERO) <= 0) {
+        if (batchHeader.getBatchTotalCreditAmount().compareTo(BigDecimal.ZERO) <= 0) {
             // We do not propagate batch order location because the upload always has one batch order
             batchUploadReport.addError(
-                ErrorFactory.createAmountIsNotPositiveError("batch-total-amount", batchHeader.getBatchTotalAmount()));
+                ErrorFactory.createAmountIsNotPositiveError("batch-total-amount",
+                    batchHeader.getBatchTotalCreditAmount()));
         }
     }
 
