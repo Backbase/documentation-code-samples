@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.backbase.buildingblocks</groupId>
+        <artifactId>backbase-service-extension-starter-parent</artifactId>
+        <version>12.1.0</version>
+    </parent>
+
+    <groupId>com.backbase.dbs.paymentorder</groupId>
+    <artifactId>lorem-ipsum-batch-upload-type-service-extension</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <properties>
+
+        <!-- docker configuration -->
+        <docker.image.name>harbor.backbase.eu/experimental/${project.artifactId}</docker.image.name>
+        <docker.image.tag>${project.version}</docker.image.tag>
+
+        <!-- base image -->
+        <docker.base.tag>DBS-2.20.1</docker.base.tag>
+        <docker.base.name>repo.backbase.com/backbase-docker-releases/payment-order-service</docker.base.name>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.backbase.dbs</groupId>
+                <artifactId>banking-services-bom</artifactId>
+                <version>2.20.1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.backbase.dbs.paymentorder</groupId>
+            <artifactId>payment-order-service</artifactId>
+            <classifier>classes</classifier>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
