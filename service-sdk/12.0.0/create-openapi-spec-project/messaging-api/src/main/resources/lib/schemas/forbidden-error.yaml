@@ -1,3 +1,4 @@
+title: ForbiddenError
 type: object
 properties:
   message:

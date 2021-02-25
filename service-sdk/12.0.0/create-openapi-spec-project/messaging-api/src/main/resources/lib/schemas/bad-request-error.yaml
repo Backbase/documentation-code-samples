@@ -1,3 +1,4 @@
+title: BadRequestError
 type: object
 properties:
   message:

@@ -9,7 +9,7 @@
     <parent>
         <artifactId>service-sdk-starter-core</artifactId>
         <groupId>com.backbase.buildingblocks</groupId>
-        <version>12.0.0</version>
+        <version>12.1.0</version>
         <relativePath />
     </parent>
 
@@ -20,7 +20,7 @@
     <name>Backbase :: Digital Banking Services :: example-service</name>
 
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>11</java.version>
     </properties>
 
     <dependencies>
