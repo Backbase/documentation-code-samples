@@ -14,41 +14,34 @@
     <version>1.0.0-SNAPSHOT</version>
     <name>Backbase :: Digital Banking Services :: messaging-api</name>
 
-    <dependencies>
-        <dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>1.6.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.openapitools</groupId>
-            <artifactId>jackson-databind-nullable</artifactId>
-            <version>0.2.1</version>
-        </dependency>
-    </dependencies>
+    <properties>
+        <codegen.npmPackage.name>@backbase/message-http-ang</codegen.npmPackage.name>
+        <codegen.npmPackage.version>${version}</codegen.npmPackage.version>
+        <codegen.generateMocks>true</codegen.generateMocks>
+        <codegen.apiModulePrefix>Message</codegen.apiModulePrefix>
+        <codegen.angularVersion>10.1.0</codegen.angularVersion>
+        <codegen.buildDist>dist/libs/transactions-http-ang</codegen.buildDist>
+        <codegen.serviceSuffix>HttpService</codegen.serviceSuffix>
+    </properties>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.openapitools</groupId>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>boat-maven-plugin</artifactId>
+                <version>0.14.0</version>
                 <executions>
                     <execution>
-                        <id>generate-client-api-code</id>
                         <goals>
                             <goal>generate</goal>
                         </goals>
+                        <configuration>
+                            <inputSpec>${project.basedir}/src/main/resources/openapi.yaml</inputSpec>
+                            <generatorName>typescript-angular</generatorName>
+                            <additionalProperties>ngVersion=${codegen.angularVersion},npmName=${codegen.npmPackage.name},npmVersion=${codegen.npmPackage.version},withMocks=${codegen.generateMocks},apiModulePrefix=${codegen.apiModulePrefix},buildDist=${codegen.buildDist},serviceSuffix=${codegen.serviceSuffix}</additionalProperties>
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <inputSpec>src/main/resources/openapi.yaml</inputSpec>
-                    <output>${project.build.directory}/generated-sources/api</output>
-                    <configOptions>
-                        <apiPackage>message</apiPackage>
-                        <modelPackage>message.model</modelPackage>
-                    </configOptions>
-                </configuration>
             </plugin>
             <!--maven-jar-plugin is only including the OpenAPI spec and examples in the built artifact -->
             <plugin>

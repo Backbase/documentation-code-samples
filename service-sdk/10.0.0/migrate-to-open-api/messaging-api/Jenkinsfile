@@ -1,0 +1,70 @@
+#!/usr/bin/env groovy
+
+pipeline {
+  agent any
+
+  tools {
+    maven 'maven'
+    nodejs 'node'
+  }
+
+  environment {
+    BACKBASE_REGISTRY = "https://repo.backbase.com/api/npm/npm-backbase/"
+    PUBLISH_REGISTRY = "https://myregistry.backbase.com/"
+    RELEASE_BRANCH_PATTERN = /^(master|release\/.*)$/
+  }
+
+  stages {
+    stage('Build') {
+      steps {
+        script {
+          sh 'mvn clean compile'
+          dir('target/generated-sources/openapi') {
+            sh "npm install --@backbase:registry=${BACKBASE_REGISTRY}"
+            sh "npm run build"
+          }
+        }
+      }
+    }
+
+    stage('Update API') {
+      when { not { expression { BRANCH_NAME ==~ RELEASE_BRANCH_PATTERN } } }
+      steps {
+        script {
+          dir('typescript-angular-api') {
+            sh "npm install"
+            sh "npm run api:extract"
+            sh "git add ."
+            gitChanges = sh(returnStatus: true, script: 'git diff --staged --exit-code -- .')
+            if (gitChanges != 0) {
+              sh "git commit -m 'Updated typescript API'"
+              sh "git push origin HEAD:${env.BRANCH_NAME}"
+            }
+          }
+        }
+      }
+    }
+
+    stage('Test') {
+      steps {
+        script {
+          dir('typescript-angular-api') {
+            sh "npm install"
+            sh "npm run api:check"
+          }
+        }
+      }
+    }
+
+    stage('Deploy') {
+      when { expression { BRANCH_NAME ==~ RELEASE_BRANCH_PATTERN } }
+      steps {
+        script {
+          dir('target/generated-sources/openapi/dist') {
+            sh "npm publish --registry ${PUBLISH_REGISTRY}"
+          }
+        }
+      }
+    }
+  }
+}
