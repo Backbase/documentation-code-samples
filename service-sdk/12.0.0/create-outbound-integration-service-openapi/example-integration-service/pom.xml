@@ -65,9 +65,10 @@
             </dependency>
             <!-- end::spec-and-dependency[] -->
         </dependencies>
-    <!-- tag::build[] -->
+    
     <build>
         <plugins>
+            <!-- tag::maven-plugin[] -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -99,7 +100,9 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- end::maven-plugin[] -->
 
+            <!-- tag::boat-plugin[] -->
             <plugin>
             <groupId>com.backbase.oss</groupId>
             <artifactId>boat-maven-plugin</artifactId>
@@ -122,7 +125,8 @@
             </execution>
             </executions>
             </plugin>
+            <!-- end::boat-plugin[] -->
         </plugins>
     </build>
-    <!-- end::build[] -->
+   
 </project>
