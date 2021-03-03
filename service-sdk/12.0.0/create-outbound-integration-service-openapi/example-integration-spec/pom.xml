@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.backbase.buildingblocks</groupId>
+        <artifactId>backbase-openapi-spec-starter-parent</artifactId>
+        <version>12.1.0</version>
+    </parent>
+
+    <groupId>com.backbase.poc</groupId>
+    <artifactId>example-integration-spec</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>Backbase :: Example Integration Service API Spec</name>
+
+    <properties>
+        <!-- plugin versions -->
+        <boat-maven-plugin.version>0.14.1</boat-maven-plugin.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>boat-tmaven-plugin</artifactId>
+                <version>${boat-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>boat-validation</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>validate</goal>
+                        </goals>
+                        <configuration>
+                            <input>${project.basedir}/src/main/resources/client-api-v1.yaml</input>
+                            <failOnWarning>true</failOnWarning>
+                        </configuration>
+                    </execution>
+                    <!-- main version of the specs - dynamically versioned filename -->
+                    <execution>
+                        <id>boat-bundle</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>bundle</goal>
+                        </goals>
+                        <configuration>
+                            <input>${project.basedir}/src/main/resources</input>
+                            <output>${project.build.directory}</output>
+                            <versionFileName>true</versionFileName>
+                        </configuration>
+                    </execution>
+                    <!-- unversioned - static filename for docs -->
+                    <execution>
+                        <id>boat-bundle-unversioned</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>bundle</goal>
+                        </goals>
+                        <configuration>
+                            <input>${project.basedir}/src/main/resources</input>
+                            <output>${project.build.directory}/unversioned</output>
+                            <versionFileName>false</versionFileName>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>boat-linting</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>lint</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.build.directory}</inputSpec>
+                            <output>${project.basedir}/target/boat-lint-reports</output>
+                            <writeLintReport>true</writeLintReport>
+                            <failOnWarning>true</failOnWarning>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>boat-docs</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${project.build.directory}/unversioned/client-api-v1.yaml</inputSpec>
+                            <output>${project.build.directory}/generated-docs</output>
+                            <generatorName>html2</generatorName>
+                            <generateAliasAsModel>true</generateAliasAsModel>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
