@@ -62,7 +62,7 @@
 
     </dependencies>
 
-    <!-- tag::openapi-generator-plugin[] -->
+    <!-- tag::boat-maven-plugin[] -->
     <build>
         <plugins>
             <plugin>
@@ -89,6 +89,6 @@
         </plugins>
 
     </build>
-    <!-- end::openapi-generator-plugin[] -->
+    <!-- end::boat-maven-plugin[] -->
 
 </project>
