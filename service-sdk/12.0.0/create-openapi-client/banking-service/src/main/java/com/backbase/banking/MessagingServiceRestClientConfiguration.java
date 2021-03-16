@@ -28,7 +28,7 @@ public class MessagingServiceRestClientConfiguration extends ApiClientConfig {
         return new MessageApi(createaApiClient());
     }
 
-    private ApiClient createaApiClient() {
+    private ApiClient createApiClient() {
         return new ApiClient(getRestTemplate())
             .setBasePath(createBasePath())
             .addDefaultHeader(HttpCommunicationConfiguration.INTERCEPTORS_ENABLED_HEADER, Boolean.TRUE.toString());
