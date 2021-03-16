@@ -9,7 +9,7 @@
         can declare it as a dependency instead, see pom-as-dependency.xml -->
     <parent>
         <groupId>com.backbase.buildingblocks</groupId>
-        <version>12.1.0</version>
+        <version>12.2.0</version>
         <artifactId>service-sdk-starter-core</artifactId>
         <relativePath/>
     </parent>
@@ -31,7 +31,7 @@
         <dependency>
             <groupId>io.swagger</groupId>
             <artifactId>swagger-annotations</artifactId>
-            <version>1.6.0</version>
+            <version>1.6.1</version>
         </dependency>
 
         <dependency>
@@ -62,7 +62,7 @@
 
     </dependencies>
 
-    <!-- tag::openapi-generator-plugin[] -->
+    <!-- tag::boat-maven-plugin[] -->
     <build>
         <plugins>
             <plugin>
@@ -89,6 +89,6 @@
         </plugins>
 
     </build>
-    <!-- end::openapi-generator-plugin[] -->
+    <!-- end::boat-maven-plugin[] -->
 
 </project>
