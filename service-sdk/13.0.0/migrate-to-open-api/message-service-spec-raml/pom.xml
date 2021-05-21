@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>backbase-spec-starter-parent</artifactId>
+        <groupId>com.backbase.buildingblocks</groupId>
+        <version>13.0.0</version>
+    </parent>
+
+    <groupId>com.backbase.message</groupId>
+    <artifactId>message-service-spec-raml</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>Backbase :: Digital Banking Services :: Message Persistence Service API Spec</name>
+
+    <properties>
+        <codegen.serviceName>message</codegen.serviceName>
+    </properties>
+
+    <build>
+        <plugins>
+            <!-- tag::boat-plugin[] -->
+            <plugin>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>boat-maven-plugin</artifactId>
+                <version>0.13.0</version>
+                <configuration>
+                    <input>src/main/resources/</input>
+                </configuration>
+            </plugin>
+            <!-- end::boat-plugin[] -->
+            <plugin>
+                <groupId>com.backbase.codegen</groupId>
+                <artifactId>raml-api-maven-plugin-1-0</artifactId>
+                <!-- These options change the default configuration managed in backbase-spec-starter-parent-->
+                <configuration>
+                    <inputFile>src/main/resources/api.raml</inputFile>
+                    <outputFile>target/generated-sources</outputFile>
+                    <packageName>${codegen.serviceName}</packageName>
+                    <!-- For new projects we recommend enabling java.time.* classes for
+                        datetime types with the following two configuration properties.
+                        These will become the default values in a future SSDK release and
+                        support for java.util.Date will eventually be removed -->
+                    <useJavaTime>true</useJavaTime>
+                    <backwardsCompatibleDateMethods>false</backwardsCompatibleDateMethods>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
