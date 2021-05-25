@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure
+  xmlns="urn:jboss:deployment-structure:1.2"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:jboss:deployment-structure:1.2 http://www.jboss.org/schema/jbossas/jboss-deployment-structure-1_2.xsd">
+  <deployment>
+    <exclude-subsystems>
+      <!-- Exclude the JBoss logging subsystem so that the packaged logging framework is used instead.
+           This prevents any errors relating to an unexpected logging implementation or version used at runtime. -->
+      <subsystem name="logging" />
+      <!-- If your service provides any libraries which conflict
+        with JBoss-provided modules, exclude the JBoss modules here.
+        For example, to exclude the JBoss jax-rs subsystem:
+        <subsystem name="jaxrs" />
+      -->
+    </exclude-subsystems>
+    <dependencies>
+      <!-- An optional dependency on a module named com.backbase.message.messaging-service-config
+        allows custom configuration (e.g., application.properties files), JDBC drivers,
+        transitive module dependencies, etc., to be provided at runtime by adding a module
+        so named to the JBoss server. -->
+      <module name="com.backbase.message.messaging-service-config" optional="true" />
+    </dependencies>
+  </deployment>
+</jboss-deployment-structure>

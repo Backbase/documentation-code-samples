@@ -1,0 +1,169 @@
+openapi: 3.0.3
+info:
+  title: Message Service API Spec
+  description: Specs for Message Service API
+  version: 1.0.0
+  x-icon: credit_card
+
+servers:
+  - description: local test
+    url: http://localhost:8080/api/v1
+
+tags:
+  - name: Retail
+
+paths:
+
+  /client-api/v1/messages:
+    description: No description available
+
+    get:
+      summary: Returns available items, optionally filtered by name.
+      description: Returns available items, optionally filtered by name
+      operationId: getMessage
+      parameters:
+        - description: Id of the message record
+          example: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
+          in: query
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                $ref: examples/body/example-message.json
+              schema:
+                $ref: '#/components/schemas/Message'
+          description: No description available
+        '400':
+          $ref: 'lib/common-types.yaml#/components/responses/400BadRequest'
+        '500':
+          $ref: 'lib/common-types.yaml#/components/responses/500InternalServerError'
+      tags:
+        - message
+
+    delete:
+      summary: Delete message.
+      description: Deletes a message
+      operationId: deleteMessage
+      parameters:
+        - description: Id of the message record
+          example: a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1
+          in: query
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: request to delete completed
+        '400':
+          $ref: 'lib/common-types.yaml#/components/responses/400BadRequest'
+        '500':
+          $ref: 'lib/common-types.yaml#/components/responses/500InternalServerError'
+      tags:
+        - message
+
+    post:
+      summary: Adds or updates a message.
+      description: Adds or updates a message
+      operationId: postMessage
+      requestBody:
+        content:
+          application/json:
+            example:
+              $ref: examples/body/example-message.json
+            schema:
+              $ref: '#/components/schemas/Message'
+        description: Adds or updates a message
+      responses:
+        '201':
+          content:
+            application/json:
+              example:
+                $ref: examples/body/example-message-created.json
+              schema:
+                $ref: '#/components/schemas/MessagePostResponseBody'
+          description: request to create item accepted
+        '400':
+          $ref: 'lib/common-types.yaml#/components/responses/400BadRequest'
+        '500':
+          $ref: 'lib/common-types.yaml#/components/responses/500InternalServerError'
+      tags:
+        - message
+
+    put:
+      summary: Adds or updates a message.
+      description: Adds or updates a message
+      operationId: putMessage
+      requestBody:
+        content:
+          application/json:
+            example:
+              $ref: examples/body/example-message.json
+            schema:
+              $ref: '#/components/schemas/Message'
+        description: Adds or updates a message
+      responses:
+        '204':
+          description: request to update item completed
+        '400':
+          $ref: 'lib/common-types.yaml#/components/responses/400BadRequest'
+        '500':
+          $ref: 'lib/common-types.yaml#/components/responses/500InternalServerError'
+      tags:
+        - message
+
+  /client-api/v1/all-messages:
+    summary: messages
+    description: No description available
+    get:
+      summary: Returns all available messages.
+      description: Returns all available messages
+      operationId: getMessages
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                $ref: examples/body/example-messages-get.json
+              schema:
+                $ref: '#/components/schemas/MessagesGetResponseBody'
+          description: No description available
+        '400':
+          $ref: 'lib/common-types.yaml#/components/responses/400BadRequest'
+        '500':
+          $ref: 'lib/common-types.yaml#/components/responses/500InternalServerError'
+      tags:
+        - message
+
+components:
+  schemas:
+    ErrorItem:
+      $ref: 'lib/schemas/error-item.yaml'
+    Message:
+      $ref: schemas/body/message.json
+    MessagesGetResponseBody:
+      $ref: schemas/body/messages-get.json
+    MessagePostResponseBody:
+      $ref: schemas/body/message-created.json
+    NotAcceptableError:
+      properties:
+        message:
+          type: string
+        supportedMediaTypes:
+          description: List of supported media types for this endpoint
+          items:
+            type: string
+          type: array
+      type: object
+    UnauthorizedError:
+      properties:
+        message:
+          type: string
+      required:
+        - message
+      type: object
