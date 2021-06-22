@@ -44,7 +44,6 @@ import static org.hamcrest.CoreMatchers.containsString;
  */
 @SpringBootTest(classes = Application.class)
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
-@ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc
 @ActiveProfiles("it")
 class ExampleControllerIT {
