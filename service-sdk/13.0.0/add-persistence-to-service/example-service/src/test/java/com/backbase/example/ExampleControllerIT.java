@@ -3,6 +3,7 @@ package com.backbase.example;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -11,18 +12,20 @@ import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.http.MediaType;
-import org.junit.runner.RunWith;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThan;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -30,21 +33,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertThat;
+
 
 /**
  * A wrapper annotation for use with integration tests.
  *
  * By default, assumes the integration test modifies the
- * {@link ApplicationContext} associated with the test/s and will therefore be
+ * {@link org.springframework.context.ApplicationContext} associated with the test/s and will therefore be
  * closed and removed from the context cache at the end of the class.
  */
 @SpringBootTest(classes = Application.class)
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
-@RunWith(SpringJUnit4ClassRunner.class)
 @AutoConfigureMockMvc
 @ActiveProfiles("it")
-public class ExampleControllerIT {
+class ExampleControllerIT {
 
     String TOKEN_ATTR_NAME = "org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository.CSRF_TOKEN";
 
@@ -58,7 +60,7 @@ public class ExampleControllerIT {
     private MockMvc mvc;
 
     @Test
-    public void exampleTest() throws Exception {
+    void exampleTest() throws Exception {
         String greetingsId = givenAGreetingExists();
         whenWeGetTheMessageByIdThenTheMessageExists(greetingsId);
         WhenWeGetAllMessagesThenAListOfMessagesIsReturned();

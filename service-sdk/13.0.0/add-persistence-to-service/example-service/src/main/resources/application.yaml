@@ -47,7 +47,7 @@ spring:
     generate-ddl: false
   liquibase:
     enabled: true
-    change-log: classpath:db/changelog.yaml
+    change-log: classpath:db/changelog/db.changelog-persistence.xml
 
 buildingblocks:
   security:
