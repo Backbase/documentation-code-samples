@@ -19,12 +19,12 @@ public class MessagingServiceRestClientConfiguration extends ApiClientConfig {
     }
 
     /**
-     * Creates a REST client.
+     * Creates a REST client. Name the method after your Api class.
      *
      * @return the client.
      */
     @Bean
-    public MessageApi createGeneratedClassApiClient() {
+    public MessageApi messageApiClient() {
         return new MessageApi(createaApiClient());
     }
 
