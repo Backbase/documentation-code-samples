@@ -49,6 +49,12 @@
             <artifactId>springfox-core</artifactId>
             <version>3.0.0</version>
         </dependency>
+        
+        <dependency>
+            <groupId>com.backbase.buildingblocks</groupId>
+            <artifactId>spring-security-csrf</artifactId>
+        </dependency>
+        
         <!-- end::openapi-dependency[] -->
 
         <dependency>
