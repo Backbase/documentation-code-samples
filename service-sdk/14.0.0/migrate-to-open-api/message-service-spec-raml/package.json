@@ -1,0 +1,26 @@
+{
+  "name": "message-service-spec-raml-frontend-codegen",
+  "config": {
+    "version": "0.0.0",
+    "capability": "message-service-spec-raml",
+    "transform_plugins": "crud"
+  },
+  "scripts": {
+    "fe-codegen": "npm run clean && npm run generate-http && npm run generate-mock",
+    "clean": "rm -rf fe-dist",
+    "generate-http": "npm run convert-http && npm run build-http && npm run doc-http",
+    "convert-http": "bb-convert raml -o fe-dist/http-ng src/main/resources/api.raml --semver $npm_package_config_version",
+    "build-http": "bb-build project fe-dist/http-ng --output fe-dist/http-ng/build",
+    "doc-http": "bb-doc js fe-dist/http-ng/data-bb-$npm_package_config_capability-http-ng --output fe-dist/http-ng/build/data-bb-$npm_package_config_capability-http-ng/docs",
+    "generate-mock": "npm run convert-mock && npm run build-mock && npm run doc-mock",
+    "convert-mock": "bb-convert raml --template mock-ng -o fe-dist/mock-ng src/main/resources/api.raml --transform-plugins $npm_package_config_transform_plugins --semver $npm_package_config_version",
+    "build-mock": "bb-build project fe-dist/mock-ng --output fe-dist/mock-ng/build",
+    "doc-mock": "bb-doc js fe-dist/mock-ng/mock.data-bb-$npm_package_config_capability-mock-ng --output fe-dist/mock-ng/build/mock.data-bb-$npm_package_config_capability-http-ng/docs"
+  },
+  "devDependencies": {
+    "@bb-cli/bb-build": "^2.0.0",
+    "@bb-cli/bb-convert": "^2.0.2-pr.0",
+    "@bb-cli/bb-doc": "^2.0.1-pr.13",
+    "@bb-cli/bb-convert-plugin-crud": "^1.0.0"
+  }
+}

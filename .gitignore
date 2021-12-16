@@ -1,1 +1,10 @@
 service-sdk/12.1.0/.idea/
+.DS_Store
+target/
+.idea/
+*.iml
+.classpath
+.project
+.factorypath
+.settings
+.mvn/.m2
