@@ -1,6 +1,0 @@
-target
-.idea
-*.iml
-blackduck-scan-wars/hub-detect.sh
-*.springBeans
-/flaws.json
