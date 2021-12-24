@@ -1,0 +1,82 @@
+#%RAML 1.0
+---
+#===============================================================
+#  References:
+#    - RAML Specification - https://github.com/raml-org/raml-spec/blob/master/versions/raml-10/raml-10.md
+#===============================================================
+title: Example Service API Spec
+uses: 
+  traits: lib/traits/traits.raml
+version: v1
+baseUri: "/{version}"
+mediaType:  application/json
+protocols: [ HTTP, HTTPS ]
+types:
+#===============================================================
+# API resource definitions
+#===============================================================
+/message:
+  displayName: Message
+  get:
+    #Remove traits if they are not applicable to your service
+    is: [traits.BadRequestError, traits.InternalServerError]
+    description: "Returns available items, optionally filtered by name"
+    queryParameters:
+      id:
+        description: "Id of the message record"
+        required: true
+        type: string
+        example: "a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1"
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include schemas/body/message.json
+            example: !include examples/body/example-message.json
+  post:
+    is: [traits.BadRequestError, traits.InternalServerError]
+    description: Adds or updates a message
+    body:
+      application/json:
+        schema: !include schemas/body/message.json
+        example: !include examples/body/example-message.json
+    responses:
+      201:
+        description: request to create item accepted
+        body:
+          application/json:
+            schema: !include schemas/body/message-created.json
+            example: !include examples/body/example-message-created.json
+  put:
+    is: [traits.BadRequestError, traits.InternalServerError]
+    description: Adds or updates a message
+    body:
+      application/json:
+        schema: !include schemas/body/message.json
+        example: !include examples/body/example-message.json
+    responses:
+      204:
+        description: request to update item completed
+  delete:
+    is: [traits.BadRequestError, traits.InternalServerError]
+    description: Adds or updates a message
+    queryParameters:
+      id:
+        description: "Id of the message record"
+        required: true
+        type: string
+        example: "a5b0fe7d-c4dd-40a7-bd80-dfc7869327e1"
+    responses:
+      204:
+        description: request to delete completed
+  /messages:
+    get:
+      #Remove traits if they are not applicable to your service
+      is: [traits.BadRequestError, traits.InternalServerError]
+      description: "Returns all available messages"
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include schemas/body/messages-get.json
+              example: !include examples/body/example-messages-get.json

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.backbase.buildingblocks</groupId>
+    <artifactId>documentation-code-samples</artifactId>
+    <version>14.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <distributionManagement>
+        <repository>
+            <id>Backbase Artifact Builds Repository</id>
+            <name>artifacts.backbase.com-builds</name>
+            <url>https://artifacts.backbase.com/staging</url>
+        </repository>
+    </distributionManagement>
+
+    <modules>
+        <module>add-persistence-to-service/example-service</module>
+        <module>create-core-service/example-service</module>
+        <module>create-openapi-client/banking-service</module>
+        <module>create-openapi-spec-project/messaging-api</module>
+        <module>create-openapi-spec-project/messaging-service</module>
+        <module>create-outbound-integration-service/example-integration-spec</module>
+        <module>create-outbound-integration-service/example-integration-service</module>
+        <module>create-outbound-integration-service-openapi/example-integration-spec</module>
+        <module>create-outbound-integration-service-openapi/example-integration-service</module>
+        <module>create-persistence-crud-service-specification/example-service-spec</module>
+        <module>include-persistence-crud-service-specification/example-service</module>
+        <module>migrate-to-open-api/message-service-spec-raml</module>
+        <module>migrate-to-open-api/messaging-api</module>
+        <module>migrate-to-open-api/messaging-service</module>
+        <module>service-to-service-communication/example-service</module>
+    </modules>
+
+</project>
