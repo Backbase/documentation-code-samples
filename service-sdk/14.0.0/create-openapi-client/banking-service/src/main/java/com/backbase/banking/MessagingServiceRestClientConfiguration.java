@@ -25,7 +25,7 @@ public class MessagingServiceRestClientConfiguration extends ApiClientConfig {
      */
     @Bean
     public MessageApi createGeneratedClassApiClient() {
-        return new MessageApi(createaApiClient());
+        return new MessageApi(createApiClient());
     }
 
     private ApiClient createApiClient() {
