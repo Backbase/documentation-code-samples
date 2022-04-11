@@ -5,30 +5,30 @@
     <parent>
         <groupId>com.backbase.buildingblocks</groupId>
         <artifactId>backbase-service-extension-starter-parent</artifactId>
-        <version>12.1.0</version>
+        <version>14.0.0</version>
     </parent>
 
-    <groupId>com.backbase.dbs.paymentorder</groupId>
+    <groupId>com.backbase.batch</groupId>
     <artifactId>lorem-ipsum-batch-upload-type-service-extension</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <properties>
 
         <!-- docker configuration -->
-        <docker.image.name>harbor.backbase.eu/experimental/${project.artifactId}</docker.image.name>
+        <docker.image.name>harbor.backbase.eu/development/${project.artifactId}</docker.image.name>
         <docker.image.tag>${project.version}</docker.image.tag>
 
         <!-- base image -->
-        <docker.base.tag>DBS-2.20.1</docker.base.tag>
-        <docker.base.name>repo.backbase.com/backbase-docker-releases/payment-order-service</docker.base.name>
+        <docker.base.tag>BB-2022.04</docker.base.tag>
+        <docker.base.name>repo.backbase.com/backbase-docker-releases/payment-batch</docker.base.name>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.backbase.dbs</groupId>
-                <artifactId>banking-services-bom</artifactId>
-                <version>2.20.1</version>
+                <groupId>com.backbase</groupId>
+                <artifactId>backbase-bom</artifactId>
+                <version>2022.04</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -37,8 +37,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.backbase.dbs.paymentorder</groupId>
-            <artifactId>payment-order-service</artifactId>
+            <groupId>com.backbase.batch</groupId>
+            <artifactId>payment-batch</artifactId>
             <classifier>classes</classifier>
             <scope>provided</scope>
         </dependency>
