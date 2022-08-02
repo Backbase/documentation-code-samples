@@ -1,4 +1,3 @@
-
 package com.backbase.dbs.payment.batch.validator.type;
 
 import com.backbase.buildingblocks.presentation.errors.BadRequestException;
@@ -10,7 +9,7 @@ import com.backbase.dbs.payment.batch.model.BatchUploadReport;
 import com.backbase.dbs.payment.batch.parser.type.LoremIpsumBatchParser;
 import com.backbase.dbs.payment.batch.service.ErrorFactory;
 import com.backbase.dbs.payment.batch.validator.BatchTypeValidator;
-import com.backbase.dbs.paymentorder.spec.v2.batchuploads.FileDto;
+import com.backbase.dbs.payment.batch.model.internal.FileDto;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.List;

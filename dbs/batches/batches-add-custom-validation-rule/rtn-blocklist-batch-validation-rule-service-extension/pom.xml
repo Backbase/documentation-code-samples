@@ -5,12 +5,12 @@
     <parent>
         <groupId>com.backbase.buildingblocks</groupId>
         <artifactId>backbase-service-extension-starter-parent</artifactId>
-        <version>13.3.1</version>
+        <version>15.0.0</version>
     </parent>
 
     <groupId>com.backbase.batch</groupId>
     <artifactId>rtn-blocklist-batch-validation-rule-service-extension</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
 
     <properties>
 
@@ -19,16 +19,16 @@
         <docker.image.tag>${project.version}</docker.image.tag>
 
         <!-- base image -->
-        <docker.base.tag>DBS-2.21.4</docker.base.tag>
+        <docker.base.tag>2022.07.3</docker.base.tag>
         <docker.base.name>repo.backbase.com/backbase-docker-releases/payment-batch</docker.base.name>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.backbase.dbs</groupId>
-                <artifactId>banking-services-bom</artifactId>
-                <version>2.21.4</version>
+                <groupId>com.backbase</groupId>
+                <artifactId>backbase-bom</artifactId>
+                <version>2022.07.3</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -50,7 +50,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.22</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
