@@ -29,7 +29,7 @@
             <dependency>
                 <groupId>com.backbase</groupId>
                 <artifactId>backbase-bom</artifactId>
-                <version>2022.07.3</version>
+                <version>2022.08-LTS</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

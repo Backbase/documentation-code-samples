@@ -19,7 +19,7 @@
         <docker.image.tag>${project.version}</docker.image.tag>
 
         <!-- base image -->
-        <docker.base.tag>2022.07.3</docker.base.tag>
+        <docker.base.tag>2022.08-LTS</docker.base.tag>
         <docker.base.name>repo.backbase.com/backbase-docker-releases/payment-batch</docker.base.name>
     </properties>
 
@@ -28,7 +28,7 @@
             <dependency>
                 <groupId>com.backbase</groupId>
                 <artifactId>backbase-bom</artifactId>
-                <version>2022.07.3</version>
+                <version>2022.08-LTS</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
