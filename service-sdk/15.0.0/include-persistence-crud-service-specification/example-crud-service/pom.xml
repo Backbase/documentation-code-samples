@@ -132,6 +132,7 @@
                 <artifactId>boat-maven-plugin</artifactId>
                 <version>${boat-maven-plugin.version}</version>
                 <executions>
+                    <!-- tag::spec-dependency[] -->
                     <execution>
                         <id>generate-client-api-code</id>
                         <goals>
@@ -144,6 +145,7 @@
                             <modelPackage>com.backbase.service.example.rest.spec.v1.model</modelPackage>
                         </configuration>
                     </execution>
+                    <!-- end::spec-dependency[] -->
                 </executions>
             </plugin>
 
