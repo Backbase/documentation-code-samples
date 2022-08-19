@@ -1,0 +1,16 @@
+databaseChangeLog:
+- changeSet:
+    id: greetings
+    author: filer
+    changes:
+    - createTable:
+        tableName: GREETINGS
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: id
+            type: VARCHAR(36)
+        - column:
+            name: message
+            type: VARCHAR(255)
