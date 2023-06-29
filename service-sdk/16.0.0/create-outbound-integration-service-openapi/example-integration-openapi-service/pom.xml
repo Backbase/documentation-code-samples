@@ -10,19 +10,18 @@
     <parent>
         <groupId>com.backbase.buildingblocks</groupId>
         <artifactId>service-sdk-starter-core</artifactId>
-        <version>15.0.1</version>
+        <version>16.0.0</version>
         <relativePath />
     </parent>
 
     <groupId>com.backbase.example</groupId>
     <artifactId>example-integration-openapi-service</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>war</packaging>
     <name>Backbase :: example-integration-openapi-service</name>
 
     <properties>
         <java.version>17</java.version>
-        <boat-maven-plugin.version>0.16.2</boat-maven-plugin.version>
+        <boat-maven-plugin.version>0.17.0</boat-maven-plugin.version>
         <open-api-specs-dir>${project.build.directory}/specs</open-api-specs-dir>
     </properties>
 
@@ -51,7 +50,7 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>io.swagger</groupId>
+                <groupId>io.swagger.core.v3</groupId>
                 <artifactId>swagger-annotations</artifactId>
             </dependency>
             <dependency>
