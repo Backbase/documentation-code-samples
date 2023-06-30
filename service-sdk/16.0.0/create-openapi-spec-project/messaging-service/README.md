@@ -16,7 +16,7 @@ To run the service in development mode, use:
 - `mvn spring-boot:run`
 
 To run the service from the built binaries, use:
-- `java -jar target/messaging-service-1.0.0-SNAPSHOT.war`
+- `java -jar target/messaging-service-1.0.0-SNAPSHOT.jar`
 
 ## Authorization
 
