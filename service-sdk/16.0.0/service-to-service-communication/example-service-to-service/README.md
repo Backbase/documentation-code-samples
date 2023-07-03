@@ -20,6 +20,6 @@ To run the service from the built binaries, use:
 
 ## Authorization
 
-Requests to this service are authorized with a Backbase Internal JWT, therefore you must access this service via the Backbase Gateway after authenticating with the authentication service.
+Requests to this service are authorized with a Backbase Internal JWT, therefore you must access this service via the Backbase Edge after authenticating with Identity service.
 
 For local development, an internal JWT can be created from http://jwt.io, entering ```JWTSecretKeyDontUseInProduction!``` as the secret in the signature to generate a valid signed JWT.

@@ -40,13 +40,11 @@ public class GreetingsServiceImpl implements GreetingsService {
     }
 
     @Override
-    @Transactional
     public void saveGreeting(Greeting greeting) {
         greetingsRepository.save(greeting);
     }
 
     @Override
-    @Transactional
     public void deleteGreeting(Greeting greeting) {
         greetingsRepository.delete(greeting);
     }
