@@ -9,7 +9,7 @@ eureka:
       role: live
   client:
     serviceUrl:
-      defaultZone: http://localhost:8764/registry/eureka/
+      defaultZone: http://localhost:8761/eureka/
 
 # Configure Internal JWT handler
 sso:
@@ -41,13 +41,15 @@ spring:
       enabled: true
   datasource:
     url: jdbc:h2:mem:greetingsdb;Mode=Oracle
-    platform: h2
-    continue-on-error: true
   jpa:
     generate-ddl: false
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-persistence.xml
+  sql:
+    init:
+      platform: h2
+      continue-on-error: true
 
 buildingblocks:
   security:
