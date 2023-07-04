@@ -21,7 +21,7 @@
 
     <properties>
         <java.version>17</java.version>
-        <boat-maven-plugin.version>0.17.0</boat-maven-plugin.version>
+        <boat-maven-plugin.version>0.17.5</boat-maven-plugin.version>
         <open-api-specs-dir>${project.build.directory}/specs</open-api-specs-dir>
     </properties>
 
