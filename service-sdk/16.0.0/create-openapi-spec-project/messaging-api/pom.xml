@@ -16,7 +16,7 @@
 
     <properties>
         <!-- plugin versions -->
-        <boat-maven-plugin.version>0.17.0</boat-maven-plugin.version>
+        <boat-maven-plugin.version>0.17.5</boat-maven-plugin.version>
     </properties>
 
     <build>
