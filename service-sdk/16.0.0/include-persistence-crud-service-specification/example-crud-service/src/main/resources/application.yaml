@@ -9,7 +9,7 @@ eureka:
       role: live
   client:
     serviceUrl:
-      defaultZone: http://localhost:8764/registry/eureka/
+      defaultZone: http://localhost:8761/eureka/
 
 # Configure Internal JWT handler
 sso:
