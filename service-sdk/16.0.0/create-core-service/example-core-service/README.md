@@ -16,10 +16,10 @@ To run the service in development mode, use:
 - `mvn spring-boot:run`
 
 To run the service from the built binaries, use:
-- `java -jar target/example-core-service-1.0.0-SNAPSHOT.war`
+- `java -jar target/example-core-service-1.0.0-SNAPSHOT.jar`
 
 ## Authorization
 
-Requests to this service are authorized with a Backbase Internal JWT, therefore you must access this service via the Backbase Gateway after authenticating with the authentication service.
+Requests to this service are authorized with a Backbase Internal JWT, therefore you must access this service via the Backbase Edge after authenticating with Identity service.
 
 For local development, an internal JWT can be created from http://jwt.io, entering ```JWTSecretKeyDontUseInProduction!``` as the secret in the signature to generate a valid signed JWT.
