@@ -1,4 +1,4 @@
-package com.backbase.message;
+package com.backbase.message.api;
 
 import com.backbase.dbs.messaging_service.api.service.v2.MessageApi;
 import com.backbase.dbs.messaging_service.api.service.v2.model.MessagePostResponseBody;

@@ -5,6 +5,7 @@ import com.backbase.example.mapper.GreetingsMapper;
 import com.backbase.example.repository.GreetingsRepository;
 import com.backbase.integration.example.client.v1.MessageApi;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,7 @@ public class GreetingsServiceImpl implements GreetingsService {
 
     @Override
     @Transactional(readOnly = true)
+    @PreAuthorize("permitAll()")
     public List<Greeting> getGreetings() {
         return greetingsRepository.findAll();
     }
@@ -28,6 +30,7 @@ public class GreetingsServiceImpl implements GreetingsService {
     // tag::getExternalGreetings[]
     @Override
     @Transactional(readOnly = true)
+    @PreAuthorize("permitAll()")
     public List<Greeting> getExternalGreetings() {
         return GreetingsMapper.INSTANCE.integrationMessageToGreeting(exampleIntegrationApiClient.getMessages());
     }
@@ -35,16 +38,19 @@ public class GreetingsServiceImpl implements GreetingsService {
 
     @Override
     @Transactional(readOnly = true)
+    @PreAuthorize("permitAll()")
     public Greeting getGreetingById(String id) {
         return greetingsRepository.findById(id).get();
     }
 
     @Override
+    @PreAuthorize("permitAll()")
     public void saveGreeting(Greeting greeting) {
         greetingsRepository.save(greeting);
     }
 
     @Override
+    @PreAuthorize("permitAll()")
     public void deleteGreeting(Greeting greeting) {
         greetingsRepository.delete(greeting);
     }

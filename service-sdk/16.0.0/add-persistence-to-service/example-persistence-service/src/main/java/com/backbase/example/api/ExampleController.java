@@ -1,5 +1,6 @@
-package com.backbase.example;
+package com.backbase.example.api;
 
+import com.backbase.example.Message;
 import com.backbase.example.domain.Greeting;
 import com.backbase.example.mapper.GreetingsMapper;
 import com.backbase.example.service.GreetingsService;
