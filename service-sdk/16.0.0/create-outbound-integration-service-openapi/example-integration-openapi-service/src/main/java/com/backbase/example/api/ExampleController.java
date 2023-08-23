@@ -1,9 +1,9 @@
-package com.backbase.example;
+package com.backbase.example.api;
 
 import com.backbase.buildingblocks.presentation.errors.InternalServerErrorException;
 import com.backbase.example.api.client.v1.MessageApi;
 import com.backbase.example.api.client.v1.model.MessagePostResponseBody;
-import com.backbase.example.integration.MessageClient;
+import com.backbase.example.client.MessageClient;
 import com.backbase.example.mapper.IntegrationMessageMapper;
 import com.backbase.example.model.Message;
 import java.io.IOException;

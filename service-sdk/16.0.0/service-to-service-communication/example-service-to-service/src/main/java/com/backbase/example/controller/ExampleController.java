@@ -1,4 +1,4 @@
-package com.backbase.example;
+package com.backbase.example.controller;
 
 import com.backbase.example.domain.Greeting;
 import com.backbase.example.mapper.GreetingsMapper;

@@ -1,4 +1,4 @@
-package com.backbase.example.integration;
+package com.backbase.example.client;
 
 import com.backbase.example.model.Message;
 

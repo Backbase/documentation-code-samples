@@ -1,11 +1,11 @@
-package com.backbase.example.integration;
+package com.backbase.example.client;
 
 import com.backbase.example.model.Message;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpMethod;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
@@ -13,7 +13,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+@Component
 public class MessageClientImpl implements MessageClient {
 
     private static final String SERVICE_URL = "http://echo.jsontest.com/messageId/abcdef-393939-dffdfdf/message/Hello%20World/";
