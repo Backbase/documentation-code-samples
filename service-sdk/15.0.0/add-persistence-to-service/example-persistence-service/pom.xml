@@ -46,11 +46,18 @@
             <scope>test</scope>
         </dependency>
         <!-- Required for MySql -->
+        <!-- For SSDK version 15.2.1 and below use the following dependency as the mysql driver: -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- For SSDK version 15.2.2 and above use the following dependency as the mysql driver: -->
+        <!-- <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>test</scope>
+        </dependency> -->
         <!-- end::persistence-dependencies[] -->
         
         <dependency>
