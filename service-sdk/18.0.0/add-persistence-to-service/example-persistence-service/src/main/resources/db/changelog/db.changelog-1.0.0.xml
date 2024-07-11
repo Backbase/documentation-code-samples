@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property dbms="mssql" name="varcharDataType" value="NVARCHAR"/>
+    <property dbms="mysql" name="varcharDataType" value="VARCHAR"/>
+    <property dbms="oracle" name="varcharDataType" value="VARCHAR2"/>
+    <property name="varcharDataType" value="VARCHAR"/>
+
+    <changeSet id="initial_001" context="initial" author="backbase">
+        <comment>create the greeting table</comment>
+        <createTable tableName="greetings" remarks="Table to store the greetings">
+            <column name="id" type="${varcharDataType}(36)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_greeting"/>
+            </column>
+            <column name="message" type="${varcharDataType}(255)" remarks="Text message">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
