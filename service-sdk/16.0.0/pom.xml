@@ -15,6 +15,8 @@
         </repository>
     </distributionManagement>
 
+    
+
     <modules>
         <module>add-persistence-to-service/example-persistence-service</module>
         <module>create-core-service/example-core-service</module>
