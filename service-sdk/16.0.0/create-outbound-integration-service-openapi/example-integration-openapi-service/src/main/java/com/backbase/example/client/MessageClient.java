@@ -1,7 +1,6 @@
 package com.backbase.example.client;
 
 import com.backbase.example.model.Message;
-
 import java.io.IOException;
 import java.util.List;
 

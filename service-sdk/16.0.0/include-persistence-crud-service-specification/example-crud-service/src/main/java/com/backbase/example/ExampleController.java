@@ -6,12 +6,11 @@ import com.backbase.example.service.GreetingsService;
 import com.backbase.service.example.rest.spec.v1.MessageApi;
 import com.backbase.service.example.rest.spec.v1.model.Message;
 import com.backbase.service.example.rest.spec.v1.model.MessagePostResponseBody;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 public class ExampleController implements MessageApi {

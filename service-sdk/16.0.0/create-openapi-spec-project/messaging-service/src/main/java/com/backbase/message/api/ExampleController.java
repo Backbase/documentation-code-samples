@@ -2,12 +2,11 @@ package com.backbase.message.api;
 
 import com.backbase.dbs.messaging_service.api.service.v2.MessageApi;
 import com.backbase.dbs.messaging_service.api.service.v2.model.MessagePostResponseBody;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RestController;
-
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import java.util.List;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
