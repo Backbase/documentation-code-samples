@@ -11,14 +11,14 @@ import org.springframework.validation.annotation.Validated;
 
 // tag::MessagingServiceRestClientConfiguration[]
 @Configuration
-@ConfigurationProperties("backbase.communication.services.name")
+@ConfigurationProperties("backbase.communication.services.messaging-service")
 @Validated
 public class MessagingServiceRestClientConfiguration extends ApiClientConfig {
 
-    public static final String MESSAGING_SERVICE_ID = "messaging-service";
+    public static final String SERVICE_ID = "messaging-service";
 
     public MessagingServiceRestClientConfiguration() {
-        super(MESSAGING_SERVICE_ID);
+        super(SERVICE_ID);
     }
 
     /**
@@ -27,7 +27,7 @@ public class MessagingServiceRestClientConfiguration extends ApiClientConfig {
      * @return the client.
      */
     @Bean
-    public MessageApi createGeneratedClassApiClient() {
+    public MessageApi messageApiClient() {
         return new MessageApi(createApiClient());
     }
 
