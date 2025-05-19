@@ -1,7 +1,6 @@
 package com.backbase.example.service;
 
 import com.backbase.example.domain.Greeting;
-
 import java.util.List;
 
 public interface GreetingsService {
