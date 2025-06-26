@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- The simplest way to build a service with service-sdk-starter-core 
+        is to use it as a parent in your project’s POM file, and alternative If you 
+        don’t want to use service-sdk-starter-core as your project’s parent, you 
+        can declare it as a dependency instead, see pom-as-dependency.xml -->
+    <parent>
+        <artifactId>service-sdk-starter-core</artifactId>
+        <groupId>com.backbase.buildingblocks</groupId>
+        <version>19.0.1</version>
+        <relativePath />
+    </parent>
+
+    <groupId>com.backbase.example</groupId>
+    <artifactId>example-service-to-service</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>Backbase :: Digital Banking Services :: example-service-to-service</name>
+
+    <properties>
+        <java.version>21</java.version>
+        <jsr305.version>3.0.2</jsr305.version>
+        <boat-maven-plugin.version>0.17.62</boat-maven-plugin.version>
+        <archunit.skip>true</archunit.skip>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-commons</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-core</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>${jsr305.version}</version>
+        </dependency>
+
+        <!-- tag::http-dependencies[] -->
+        <!--Required for HTTP s2s HTTP clients -->
+        <dependency>
+            <groupId>com.backbase.buildingblocks</groupId>
+            <artifactId>auth-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.buildingblocks</groupId>
+            <artifactId>building-blocks-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.buildingblocks</groupId>
+            <artifactId>communication</artifactId>
+        </dependency>
+        <!-- end::http-dependencies[] -->
+
+        <!--Added for persistence -->
+        <dependency>
+            <groupId>com.backbase.buildingblocks</groupId>
+            <artifactId>persistence</artifactId>
+        </dependency>
+        <!-- tag::mapping-dependencies[] -->
+        <dependency>
+            <groupId>com.backbase.buildingblocks</groupId>
+            <artifactId>service-sdk-starter-mapping</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.backbase.buildingblocks</groupId>
+            <artifactId>api</artifactId>
+        </dependency>
+        <!-- end::mapping-dependencies[] -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <!-- Required for Local testing -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.200</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Required for MySql -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Persistence -->
+        <dependency>
+            <groupId>com.backbase.buildingblocks</groupId>
+            <artifactId>service-sdk-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.backbase.message</groupId>
+                                    <artifactId>messaging-api</artifactId>
+                                    <version>1.0.0-SNAPSHOT</version>
+                                    <classifier>api</classifier>
+                                    <outputDirectory>${project.build.directory}/yaml</outputDirectory>
+                                    <type>zip</type>
+                                    <overWrite>true</overWrite>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.backbase.poc</groupId>
+                                    <artifactId>example-integration-openapi-spec</artifactId>
+                                    <version>1.0.0-SNAPSHOT</version>
+                                    <outputDirectory>${project.build.directory}/yaml/example-integration-openapi-spec</outputDirectory>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                </artifactItem>
+                            </artifactItems>
+                            <includes>**/*.yaml, **/*.json</includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.backbase.oss</groupId>
+                <artifactId>boat-maven-plugin</artifactId>
+                <version>${boat-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-client-api-code</id>
+                        <goals>
+                            <goal>generate-spring-boot-embedded</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <inputSpec>${project.build.directory}/yaml/messaging-api/client-api-v1.0.0.yaml</inputSpec>
+                            <apiPackage>com.backbase.service.example.rest.spec.v1</apiPackage>
+                            <modelPackage>com.backbase.service.example.rest.spec.v1.model</modelPackage>
+                        </configuration>
+                    </execution>
+                    <!-- tag::integration-dependencies[] -->
+                    <execution>
+                        <id>generate-integration-client</id>
+                        <goals>
+                            <goal>generate-rest-template-embedded</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <inputSpec>${project.build.directory}/yaml/example-integration-openapi-spec/client-api-v1.yaml</inputSpec>
+                            <apiPackage>com.backbase.integration.example.client.v1</apiPackage>
+                            <modelPackage>com.backbase.integration.example.client.v1.model</modelPackage>
+                            <additionalProperties>restTemplateBeanName=interServiceRestTemplate</additionalProperties>
+                        </configuration>
+                    </execution>
+                    <!-- end::integration-dependencies[] -->
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
